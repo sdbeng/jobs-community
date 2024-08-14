@@ -4,8 +4,8 @@ import Image from "next/image";
 export default function Home() {
   return (
     <div>
-      HOME
-      <Button>Click me</Button>
+      <h2>Jobs Community home</h2>
+      
     </div>
   );
 }
