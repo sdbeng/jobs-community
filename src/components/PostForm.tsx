@@ -24,8 +24,8 @@ export default function PostForm() {
     }
 
   return (
-    <div>
-        <form ref={ref} action="">
+    <div className='mb-2'>
+        <form ref={ref} action="" className='p-3 bg-white rounded-lg'>
             <div className='flex items-center space-x-2'>
                 <Avatar>
                     <AvatarImage src={user?.imageUrl} />
