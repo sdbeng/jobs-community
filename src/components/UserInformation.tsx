@@ -1,5 +1,5 @@
 import { currentUser } from "@clerk/nextjs/server";
-import { Avatar, AvatarImage } from "./ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
 import { Button } from "./ui/button";
 
@@ -9,16 +9,22 @@ async function UserInformation() {
     const lastName = user?.lastName as string;
     const imageUrl = user?.imageUrl as string;
 
+    // pull user comments from posts
+
 
   return (
     <div className="flex flex-col justify-center items-center bg-white mr-6 rounded-lg border py-4">
       {/* User Information */}
-      <Avatar className="">
+      <Avatar className="h-16 w-16 mb-5">
         {user?.id ? (
             <AvatarImage src={imageUrl} />
         ) : (
             <AvatarImage src="https://github.com/shadcn.png" />
         )}
+        <AvatarFallback>
+            {firstName?.charAt(0).toUpperCase()}
+            {lastName?.charAt(0).toUpperCase()}
+        </AvatarFallback>
       </Avatar>
 
       {/* SignedIn */}
@@ -31,8 +37,8 @@ async function UserInformation() {
 
       {/* SignedOut */}
       <SignedOut>
-        <div className="text-center">
-            <h2 className="text-lg font-semibold">Guest. You are not signed in.</h2>
+        <div className="text-center space-y-2">
+            <h2 className="text-lg font-semibold">Hi Guest. You are not signed in.</h2>
             <Button asChild className="bg-[#0B63C4] text-white">
             <SignInButton>Sign in</SignInButton>
           </Button>
