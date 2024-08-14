@@ -1,15 +1,31 @@
 'use client'
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import { useUser } from '@clerk/nextjs';
 import { Avatar, AvatarImage } from './ui/avatar';
 import { AvatarFallback } from '@radix-ui/react-avatar';
+import { Button } from './ui/button';
+import { ImageIcon, XIcon } from 'lucide-react';
+import Image from 'next/image';
 
 export default function PostForm() {
+    const ref = useRef<HTMLFormElement>(null);
+    const fileInputRef = useRef<HTMLInputElement>(null);
+    const [preview, setPreview] = useState<string | null>(null);
+
     const {user} = useUser();
+
+    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = () => setPreview(URL.createObjectURL(file));
+        reader.readAsDataURL(file);
+    }
 
   return (
     <div>
-        <form action="">
+        <form ref={ref} action="">
             <div className='flex items-center space-x-2'>
                 <Avatar>
                     <AvatarImage src={user?.imageUrl} />
@@ -19,12 +35,20 @@ export default function PostForm() {
                     </AvatarFallback>
                 </Avatar>
                 <input 
-                    type="text" 
+                    type="text"
                     name='postInput'
-                    placeholder="start a new post"
+                    placeholder="start a new post..."
                     className="flex-1 px-4 py-3 border rounded-full outline-none"
+                    />
+                <input 
+                    type='file'
+                    ref={fileInputRef}
+                    name='image'
+                    id='image'
+                    accept='image/*'
+                    className='hidden'
+                    onChange={handleImageChange}
                 />
-                <input type='file' name='image' id='image' className='hidden'/>
                 <label htmlFor='image' className='p-2 bg-blue-500 text-white rounded-full cursor-pointer'>
                     <svg
                         className="h-6 w-6 fill-current"
@@ -37,10 +61,36 @@ export default function PostForm() {
                 </label>
                 <button
                     type='submit'
+                    // hidden
                     className='p-2 bg-blue-500 text-white rounded-full'>Post
                 </button>
             </div>
+            {/* Preview conditional check up here */}
+            {preview && (
+                <div className='mt-2'>
+                    <Image src={preview} alt="preview" className='w-full h-60 object-cover rounded-lg' />
+                </div>
+            )}
+
+            <div className='flex justify-end mt-2'>
+                <Button type='button' onClick={() => console.log('clickeeed..')}>
+                    <ImageIcon className='mr-2' size={16} color="currentColor" />
+                    Preview
+                </Button>
+
+                {/* add a remove button */}
+                <Button
+                    type="button"
+                    // onClick={() => setPreview(null)}
+                    variant="outline"
+                    className="ml-2"
+                    >
+                    <XIcon className="mr-2" size={16} color="currentColor" />
+                    Remove image
+                </Button>
+            </div>
         </form>
+        <hr className="mt-2 border-gray-300" />
     </div>
   )
 }
