@@ -62,32 +62,35 @@ export default function PostForm() {
                 <button
                     type='submit'
                     // hidden
-                    className='p-2 bg-blue-500 text-white rounded-full'>Post
+                    className='p-2 bg-blue-500 text-white rounded-full'
+                    >Post
                 </button>
             </div>
             {/* Preview conditional check up here */}
             {preview && (
                 <div className='mt-2'>
-                    <Image src={preview} alt="preview" className='w-full h-60 object-cover rounded-lg' />
+                    <Image src={preview} alt="preview" className='w-full h-60 object-cover rounded-lg' width={250} height={250} />
                 </div>
             )}
 
-            <div className='flex justify-end mt-2'>
-                <Button type='button' onClick={() => console.log('clickeeed..')}>
+            <div className='flex justify-end mt-2 space-x-2'>
+                <Button 
+                    type='button'
+                    onClick={() => fileInputRef.current?.click()}>
                     <ImageIcon className='mr-2' size={16} color="currentColor" />
-                    Preview
+                    {preview ? 'Change' : 'Add image'}
                 </Button>
 
                 {/* add a remove button */}
-                <Button
+                {preview && (<Button
                     type="button"
-                    // onClick={() => setPreview(null)}
+                    onClick={() => setPreview(null)}
                     variant="outline"
                     className="ml-2"
                     >
                     <XIcon className="mr-2" size={16} color="currentColor" />
                     Remove image
-                </Button>
+                </Button>)}
             </div>
         </form>
         <hr className="mt-2 border-gray-300" />
