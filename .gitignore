@@ -16,6 +16,9 @@
 # production
 /build
 
+# saved prisma queries
+saved-schemas.md
+
 # misc
 .DS_Store
 *.pem
