@@ -8,8 +8,9 @@ async function UserInformation() {
     const firstName = user?.firstName as string;
     const lastName = user?.lastName as string;
     const imageUrl = user?.imageUrl as string;
+    // console.log('user obj===',user?.emailAddresses[0].emailAddress);
 
-    // pull user comments from posts
+    // pull user posts
 
 
   return (
@@ -31,7 +32,7 @@ async function UserInformation() {
       <SignedIn>
         <div className="text-center">
             <h2 className="text-lg font-semibold">{firstName} {lastName}</h2>
-            <p className="text-sm text-gray-600">{"usr@xmail.net"}</p>
+            <p className="text-sm text-gray-600">{user?.emailAddresses[0].emailAddress}</p>
         </div>
       </SignedIn>
 
