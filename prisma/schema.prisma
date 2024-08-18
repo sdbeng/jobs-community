@@ -13,25 +13,47 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-CREATE TABLE "public"."User" (
-  id SERIAL PRIMARY KEY NOT NULL,
-  name VARCHAR(255),
-  email VARCHAR(255) UNIQUE NOT NULL
-);
+model User {
+  id          Int      @id @default(autoincrement())
+  email       String   @unique
+  clerkUserId String?  @unique
+  name        String?
+  imageUrl    String?
+  // firstName   String
+  // lastName    String
+  // profile     Profile?
+  // applications Application[]
+  // likes       Like[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  posts       Post[]
 
-CREATE TABLE "public"."Post" (
-  id SERIAL PRIMARY KEY NOT NULL,
-  title VARCHAR(255) NOT NULL,
-  "createdAt" TIMESTAMP NOT NULL DEFAULT now(),
-  content TEXT,
-  published BOOLEAN NOT NULL DEFAULT false,
-  "authorId" INTEGER NOT NULL,
-  FOREIGN KEY ("authorId") REFERENCES "public"."User"(id)
-);
+  // @@map("users")
+}
 
-CREATE TABLE "public"."Profile" (
-  id SERIAL PRIMARY KEY NOT NULL,
-  bio TEXT,
-  "userId" INTEGER UNIQUE NOT NULL,
-  FOREIGN KEY ("userId") REFERENCES "public"."User"(id)
-);
+model Post {
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String
+  //related to user
+  authorId  String
+  author    User     @relation(fields: [authorId], references: [clerkUserId], onDelete: Cascade)
+  // likes     Like[]
+  createdAt DateTime @default(now())
+
+  // @@map("posts")
+
+  @@index([authorId])
+}
+
+// model Profile {
+//   id        Int     @id @default(autoincrement())
+//   bio       String?
+//   userId    Int     @unique
+//   user      User    @relation(fields: [userId], references: [id])
+//   company   Company?
+//   skills    String[]
+//   location  String?
+
+//   @@map("profiles")
+// }
