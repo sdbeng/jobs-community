@@ -4,8 +4,14 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import { Button } from './ui/button'
+import { checkUser } from '@/lib/checkUser'
 
-const Header = () => {
+const Header = async () => {
+    const user = await checkUser();
+    console.log('====================================');
+    console.log('user===', user);
+    console.log('====================================');
+    
   return (
     <div className='flex'>
         {/* Image logo */}

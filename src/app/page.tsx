@@ -13,6 +13,7 @@ export default function Home() {
       <section className="col-span-full md:col-span-6 xl:col-span-4 xl:max-w-xl mx-auto w-full ">
         <SignedIn>
         {/* PostForm center */}
+        {/* refactor: DOn't render PostForm here, add a new server component, add(use server) and pull user i.e. PostHome, then render the PostForm in there & pass in `user` as props */}
         <PostForm />
         </SignedIn>
         {/* PostFeed right side */}
