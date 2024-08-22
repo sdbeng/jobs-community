@@ -6,6 +6,8 @@ import { AvatarFallback } from '@radix-ui/react-avatar';
 import { Button } from './ui/button';
 import { ImageIcon, XIcon } from 'lucide-react';
 import Image from 'next/image';
+import addPost from '@/app/actions/addPost';
+import { toast } from 'react-toastify';
 
 export default function PostForm() {
     const ref = useRef<HTMLFormElement>(null);
@@ -23,9 +25,27 @@ export default function PostForm() {
         reader.readAsDataURL(file);
     }
 
+    const handleAddPostAction = async(formData: FormData) => {
+        const {data, error} = await addPost(formData) as { data: any, error: any };
+        console.log('1.data:', data);
+        console.log('1.error:', error);
+        if(error) {
+            console.log('error:', error);
+            toast.error(error);
+            // return;
+        }else {
+            console.log('2.data:', data);
+            toast.success('Post added successfully');
+            ref.current?.reset();//reset the form
+        }
+    }
+
   return (
     <div className='mb-2'>
-        <form ref={ref} action="" className='p-3 bg-white rounded-lg'>
+        <form
+         ref={ref}
+         action={handleAddPostAction}
+         className='p-3 bg-white rounded-lg'>
             <div className='flex items-center space-x-2'>
                 <Avatar>
                     <AvatarImage src={user?.imageUrl} />
@@ -36,7 +56,7 @@ export default function PostForm() {
                 </Avatar>
                 <input 
                     type="text"
-                    name='postInput'
+                    name='text' //might need to change this to text
                     placeholder="start a new post..."
                     className="flex-1 px-4 py-3 border rounded-full outline-none"
                     />
