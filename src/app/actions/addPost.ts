@@ -6,6 +6,10 @@ import { revalidatePath } from 'next/cache';
 
 interface PostData {
     text: string;
+    authorId: string;
+    author: {
+        imageUrl?: string | null;
+    };
 }
 
 interface PostResult {
@@ -13,8 +17,8 @@ interface PostResult {
     error?: string;
 }
 
-export default async function addPost(formData: FormData): Promise<PostResult | undefined> {
-    const textValue = formData.get('text') as string;
+export default async function addPost(formData: FormData): Promise<{ data?: PostData; error?: string}> {
+    const textValue = formData.get('text') as string;    
 
     if (!textValue || textValue === '') {
         return { error: 'Please fill in text field.' };
@@ -23,19 +27,27 @@ export default async function addPost(formData: FormData): Promise<PostResult | 
     const { userId } = auth();
 
     if (!userId) {
-        return { error: 'User was not found' };
+        return { error: 'User was not found.' };
     }
 
     try {
         const postData: PostData = await db.post.create({
             data: {
-                text: textValue,
+                text: textValue,                
                 authorId: userId,
             },
+            include: {
+                author: {
+                    select: {
+                        imageUrl: true,
+                },
+            },
+        },
         });
         revalidatePath('/');
         return { data: postData };
     } catch (error) {
-        return { error: 'An error occurred while adding post' };
+        console.error('Error adding post:', error);
+        return { error: 'An error occurred while adding post!!' };
     }
 }

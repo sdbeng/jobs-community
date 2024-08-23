@@ -3,5 +3,6 @@ export interface Post {
     text: string;    
     userId: string;
     createdAt: Date;
+    // image: string;
     // updatedAt: Date;
 }
