@@ -56,7 +56,7 @@ export default function PostForm() {
                 </Avatar>
                 <input 
                     type="text"
-                    name='text' //might need to change this to text
+                    name='text'
                     placeholder="start a new post..."
                     className="flex-1 px-4 py-3 border rounded-full outline-none"
                     />
