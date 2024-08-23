@@ -27,14 +27,13 @@ export default function PostForm() {
 
     const handleAddPostAction = async(formData: FormData) => {
         const {data, error} = await addPost(formData) as { data: any, error: any };
-        console.log('1.data:', data);
-        console.log('1.error:', error);
+        
         if(error) {
-            console.log('error:', error);
+            console.log('error:', error, data);            
             toast.error(error);
             // return;
         }else {
-            console.log('2.data:', data);
+            console.log('2.data:', data);            
             toast.success('Post added successfully');
             ref.current?.reset();//reset the form
         }

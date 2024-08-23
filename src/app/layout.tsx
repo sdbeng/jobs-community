@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Footer from "@/components/footer";
 import { ClerkProvider } from "@clerk/nextjs";
 
@@ -31,6 +33,7 @@ export default function RootLayout({
           <main>
             {children}
           </main>
+          <ToastContainer />
         </div>
         <footer>
           <Footer />
