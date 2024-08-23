@@ -33,8 +33,8 @@ model User {
 
 model Post {
   id        Int      @id @default(autoincrement())
-  title     String
-  content   String
+  text      String
+  // content   String
   //related to user
   authorId  String
   author    User     @relation(fields: [authorId], references: [clerkUserId], onDelete: Cascade)

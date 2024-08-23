@@ -8,10 +8,7 @@ import { checkUser } from '@/lib/checkUser'
 
 const Header = async () => {
     const user = await checkUser();
-    console.log('====================================');
-    console.log('user===', user);
-    console.log('====================================');
-    
+        
   return (
     <div className='flex'>
         {/* Image logo */}
