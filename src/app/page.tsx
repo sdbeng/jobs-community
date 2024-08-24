@@ -9,7 +9,7 @@ export default async function Home() {
 
   if(!posts) {
     console.log('no posts fetched:');
-    return <p className="text-red-100 ">issue fetching posts </p>
+    // return <p className="text-red-100 ">issue fetching posts </p>
   }
 
   return (
