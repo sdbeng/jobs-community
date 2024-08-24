@@ -6,6 +6,8 @@ import { Badge, Trash2 } from "lucide-react";
 import Image from "next/image";
 import { PostData } from "@/app/types/postType";
 import { Button } from "./ui/button";
+import deletePostAction from "@/app/actions/deletePostAction";
+import { toast } from "react-toastify";
 
 interface PostComponentProps {
     post: PostData;
@@ -17,7 +19,7 @@ const PostComponent: React.FC<PostComponentProps> = ({ post }) => {
 
     return (
         <div className="p-3 bg-white rounded-lg border">
-            <div className="flex items-center space-x-2 p-4">
+            <div className="flex space-x-2 p-4">
                 <div>
                 <Avatar>
                     <AvatarImage src={post.author.imageUrl || '/default-user-avatar.svg'} alt={post.author.name} />
@@ -38,42 +40,37 @@ const PostComponent: React.FC<PostComponentProps> = ({ post }) => {
                     </p>
                     {/* will install ReactTimeago lib later */}
                     <p className="text-sm text-gray-600">{post.createdAt.toDateString()}</p>
+                </div>
                 {/* trash btn whith an onClick callback to delete post */}
-                </div>
-            </div>
-            {/* will render post options component in later branch */}
-            <div className="flex justify-between p-4">
-                <div className="flex items-center space-x-2">
-                    <button className="flex items-center space-x-2">
-                        <Badge className="text-xs bg-blue-500 text-white">Like</Badge>
-                        <span>{5}</span>
-                    </button>
-                    <button className="flex items-center space-x-2">
-                        <Badge className="text-xs bg-blue-500 text-white">Comment</Badge>
-                        <span>{2}</span>
-                    </button>
-                </div>
-                {isAuthor && (
+                {/* {isAuthor && ( */}
                     <Button 
                     variant="outline"
-                    onClick={() => console.log('delete post...')}
+                    onClick={() => {
+                        const promise = deletePostAction(post.id);
+                        toast.promise(promise, {
+                            success: 'Post deleted successfully',
+                            error: 'An error occurred while deleting post!!'
+                        });
+                    }}
                     >                        
                         <Trash2 />                        
                     </Button>
-                )}
+                {/* )} */}
             </div>
+           
             <div>
                 <p className="px-4 pb-2 mt-2">{post.text}</p>
                 {/* {if image is iploaded place it here */}
-                {post.author.imageUrl && (
-                    <Image 
+                
+                    {/* <Image 
                     src={post.author.imageUrl}
-                     alt="post image"
+                    alt="post image"
                     //  className="w-full mx-auto"                    
-                      width={250} height={450}
-                    />
-                )}
+                    width={250} height={450}
+                    /> */}
+                
             </div>
+            {/* will render post options component in later branch */}
         </div>
     );
 }
