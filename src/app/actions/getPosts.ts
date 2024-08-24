@@ -15,7 +15,7 @@ const getPosts = async (): Promise<PostData[] | undefined> => {
   try {
     const posts = await db.post.findMany({
       // where: {authorId: userId},
-      // orderBy: {createdAt: 'desc'},
+      orderBy: {createdAt: 'desc'},
       include: {
         // Include the author object with the imageUrl field
         author: {
