@@ -3,15 +3,14 @@ import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
 import { Button } from "./ui/button";
 
-async function UserInformation() {
+async function UserInformation({posts}: any) {
     const user = await currentUser();
     const firstName = user?.firstName as string;
     const lastName = user?.lastName as string;
     const imageUrl = user?.imageUrl as string;
-    // console.log('user obj===',user?.emailAddresses[0].emailAddress);
+    // console.log('user obj===',user);
 
-    // pull user posts
-
+    const userPosts = posts?.filter((post) => post.authorId === user?.id);
 
   return (
     <div className="flex flex-col justify-center items-center bg-white mr-6 rounded-lg border py-4">
@@ -50,7 +49,7 @@ async function UserInformation() {
       <hr className="my-4 w-full border-gray-300"/>
       <div className="flex justify-between w-full px-4 text-sm">
         <p className="font-semibold text-gray-400">Posts</p>
-        <p className="text-blue-400">{0}</p>
+        <p className="text-blue-400">{userPosts.length}</p>
       </div>
 
       <div className="flex justify-between w-full px-4 text-sm">
