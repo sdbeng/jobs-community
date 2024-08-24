@@ -1,8 +1,19 @@
+import PostFeed from "@/components/PostFeed";
 import PostForm from "@/components/PostForm";
 import UserInformation from "@/components/UserInformation";
 import { SignedIn } from "@clerk/nextjs";
+import getPosts from "./actions/getPosts";
 
-export default function Home() {
+export default async function Home() {
+  const posts = await getPosts();
+
+  if(!posts) {
+    console.log('no posts fetched:');
+    return <p className="text-red-100 ">issue fetching posts </p>
+  }else{
+    console.log('posts fetched success:',posts);
+  }
+
   return (
     <div className="grid grid-cols-8 mt-5 sm:px-5">      
       <section className="md:inline md:col-span-2 hidden">        
@@ -12,9 +23,9 @@ export default function Home() {
 
       <section className="col-span-full md:col-span-6 xl:col-span-4 xl:max-w-xl mx-auto w-full ">
         <SignedIn>
-        {/* PostForm center */}
-        {/* refactor: DOn't render PostForm here, add a new server component, add(use server) and pull user i.e. PostHome, then render the PostForm in there & pass in `user` as props */}
+        {/* PostForm center */}        
         <PostForm />
+        <PostFeed posts={posts}/>
         </SignedIn>
         {/* PostFeed right side */}
       </section>
