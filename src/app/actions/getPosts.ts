@@ -3,10 +3,14 @@
 
 import { db } from '@/lib/db';
 import { PostData, User } from '@/app/types/postType';
-import { auth } from '@clerk/nextjs/server';
+import { auth, currentUser } from '@clerk/nextjs/server';
 
 const getPosts = async (): Promise<PostData[] | undefined> => {
-  // const { userId } = auth();
+  const { userId } = auth();
+  console.log('====================================');
+  console.log('userId', userId);
+  console.log('currentUser', currentUser);
+  console.log('====================================');
 
   // if (!userId) {
   //   return {error: 'User not found'};
@@ -14,7 +18,7 @@ const getPosts = async (): Promise<PostData[] | undefined> => {
 
   try {
     const posts = await db.post.findMany({
-      // where: {authorId: userId},
+      // where: {author: {userId}},
       orderBy: {createdAt: 'desc'},
       include: {
         // Include the author object with the imageUrl field
