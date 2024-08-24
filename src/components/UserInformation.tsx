@@ -2,8 +2,9 @@ import { currentUser } from "@clerk/nextjs/server";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
 import { Button } from "./ui/button";
+import { PostData } from "@/app/types/postType";
 
-async function UserInformation({posts}: any) {
+async function UserInformation({posts}: {posts: PostData[]}) {
     const user = await currentUser();
     const firstName = user?.firstName as string;
     const lastName = user?.lastName as string;
