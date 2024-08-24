@@ -36,10 +36,8 @@ const PostComponent: React.FC<PostComponentProps> = ({ post }) => {
                         {isAuthor && (<Badge className="ml-2">Author</Badge>)}
                     </div>
                     <p className="text-xs text-gray-400">
-                        @{post.author.name}
-                        {post.author.name}-{post.author.id.toString().slice(-4)}
-                    </p>
-                    {/* will install ReactTimeago lib later */}
+                        @{post.author.name}-{post.author.id.toString().slice(-4)}
+                    </p>                    
                     <ReactTimeago date={new Date(post.createdAt)} />
                     {/* <p className="text-sm text-gray-600">{post.createdAt.toDateString()}</p> */}
                 </div>
