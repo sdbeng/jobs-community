@@ -37,8 +37,7 @@ const PostComponent: React.FC<PostComponentProps> = ({ post }) => {
                     <p className="text-xs text-gray-400">
                         @{post.author.name}
                         {post.author.name}-{post.author.id.toString().slice(-4)}
-                    </p>
-                    {/* will install ReactTimeago lib later */}
+                    </p>                    
                     <p className="text-sm text-gray-600">{post.createdAt.toDateString()}</p>
                 </div>
                 {/* trash btn whith an onClick callback to delete post */}
