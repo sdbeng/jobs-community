@@ -2,7 +2,6 @@
 //and a sign in button if user is not signed in
 
 import { Button } from "./ui/button";
-import { SignInButton } from "./ui/signInButton";
 import { SignedIn, SignedOut } from "@clerk/clerk-react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
