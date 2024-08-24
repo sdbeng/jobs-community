@@ -10,9 +10,10 @@ export default async function Home() {
   if(!posts) {
     console.log('no posts fetched:');
     return <p className="text-red-100 ">issue fetching posts </p>
-  }else{
-    console.log('posts fetched success:',posts);
   }
+  // else{
+  //   console.log('posts fetched success:',posts);
+  // }
 
   return (
     <div className="grid grid-cols-8 mt-5 sm:px-5">      

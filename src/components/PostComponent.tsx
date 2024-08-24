@@ -8,6 +8,7 @@ import { PostData } from "@/app/types/postType";
 import { Button } from "./ui/button";
 import deletePostAction from "@/app/actions/deletePostAction";
 import { toast } from "react-toastify";
+import ReactTimeago from "react-timeago";
 
 interface PostComponentProps {
     post: PostData;
@@ -39,7 +40,8 @@ const PostComponent: React.FC<PostComponentProps> = ({ post }) => {
                         {post.author.name}-{post.author.id.toString().slice(-4)}
                     </p>
                     {/* will install ReactTimeago lib later */}
-                    <p className="text-sm text-gray-600">{post.createdAt.toDateString()}</p>
+                    <ReactTimeago date={new Date(post.createdAt)} />
+                    {/* <p className="text-sm text-gray-600">{post.createdAt.toDateString()}</p> */}
                 </div>
                 {/* trash btn whith an onClick callback to delete post */}
                 {/* {isAuthor && ( */}
