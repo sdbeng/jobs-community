@@ -1,18 +1,23 @@
 ## Jobs Community Project starter
-Professional networking site designed.
+
+Professional networking site.
 
 ## Getting Started
 
-First, run the development server:
+Run the development server:
 
 ```bash
 npm run dev
 ```
+
 ## Database design
+
 Design a database schema that can efficiently handle user profiles, posts, and other related entities.
 
 ### db schema - iteration-1
+
 User, Post, Job, Company, and Application
+
 ```schema.prisma
 model User {
     id Int    @id @default(autoincrement())

@@ -9,6 +9,13 @@ import Image from 'next/image';
 import addPost from '@/app/actions/addPost';
 import { toast } from 'react-toastify';
 
+/* TODO: 
+1-after the user presses the post button, if image was added, the image should be removed from the preview
+2- fix clerkmiddleware error, even the middleware is added in the src folder
+3- fix the listing of posts per user
+4- check why the guest user is not being displayed in production
+*/
+
 export default function PostForm() {
     const ref = useRef<HTMLFormElement>(null);
     const fileInputRef = useRef<HTMLInputElement>(null);
