@@ -9,8 +9,8 @@ export default async function Home() {
   const posts = await getPosts();
 
   if(!posts) {
-    console.log('no posts fetched:');
-    return <div>Loading...</div>
+    console.log('no posts fetched');
+    return <Guest />
   }
 
   return (
