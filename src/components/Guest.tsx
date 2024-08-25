@@ -9,9 +9,9 @@ export default function Guest() {
     return (
         <div className="flex flex-col justify-center items-center bg-white mr-6 rounded-lg border py-4">
             <Avatar className="h-16 w-16 mb-5">
-                <AvatarImage src="default-user-avatar.svg" />
+                <AvatarImage src="https://github.com/shadcn.png" />
                 <AvatarFallback>
-                    <p>Hi Guest.</p>
+                    <p className="bg-gray-100 " >Welcome Guest. If you like to get a membership of Jobs Community, please sign up.</p>
                 </AvatarFallback>
             </Avatar>
         </div>
