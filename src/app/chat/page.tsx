@@ -14,12 +14,18 @@ export default function Chat() {
     const topics = ['Administrative', 'Medical', 'Tickets', 'Tax Services']
 
     const handleTopicSelect = (topic: string) => {
-        setSelectedTopic(topic)
-        const topicMessage = `I need help with ${topic} services.`
-        // console.log('topic===', topic)
-        // console.log('topicMessage===', topicMessage)
-        handleSubmit(new Event('submit') as any, {messages: [{role: 'user', content: topicMessage}]})
-    }
+        setSelectedTopic(topic);
+      
+        const topicMessage = `I need help with ${topic} services.`;
+      
+        // Add the message directly to the message history
+        handleSubmit(new Event('submit') as any, {
+          body: {
+            messages: [...messages, { role: 'user', content: topicMessage }]
+          },
+        });
+      };    
+
     console.log('selectedTopic===', selectedTopic)
     return (
         <Card className="w-full max-w-2xl mx-auto mt-8 bg-gradient-to-br from-purple-100 to-blue-100 dark:from-purple-900 dark:to-blue-900">
