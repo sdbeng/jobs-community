@@ -1,4 +1,4 @@
-//In order to create the getAllPosts function, you need to import the db object from the lib/db.ts file and use the db.post.findMany method to retrieve all posts from the database. The getAllPosts function should return an array of PostData objects. The following code snippet demonstrates how to implement the getAllPosts function:
+//In order to create the getAllPosts function, you need to import the db object from the lib/db.ts file and use the db.post.findMany method to retrieve all posts from the database. The getAllPosts function should return an array of PostData objects.
 'use server';
 
 import { db } from '@/lib/db';
