@@ -34,9 +34,9 @@ const Header = async () => {
             <Briefcase className='h-6 text-gray-600 cursor-pointer'/>
             <p>Jobs</p>
             </Link>
-            <Link href="" className="icon">
+            <Link href="/chat" className="icon">
             <MessagesSquare className="h-5" />
-            <p>Messaging</p>
+            <p>Public Services</p>
             </Link>
 
             <SignedIn>
