@@ -14,8 +14,8 @@ export default function Chat() {
 
     const handleTopicSelect = (topic: string) => {
         setSelectedTopic(topic)
-        handleSubmit({ preventDefault: () => {}, currentTarget: { reset: () => {} } } as any, `I need help with ${topic} services.`)
-      }
+        handleSubmit(new Event('submit') as any)
+    }
 
     return (
         <Card>
