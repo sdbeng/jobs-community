@@ -13,7 +13,7 @@ const PostFeed: React.FC<PostFeedProps> = ({posts}) => {
   return (
     <div className='space-y-2 pb-20'>
         {!posts && <p>No posts...</p>}
-        {posts && posts.map((post) => (
+        {posts && posts?.map((post) => (
             <PostComponent key={post.id} post={post} />
         ))}
     </div>
