@@ -7,10 +7,15 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from "@/components/ui/input"
 
 export default function Chat() {
-    const { messages, input, handleInputChange, handleSubmit } = useChat()
+    const { messages, input, handleInputChange, handleSubmit, isLoading, stop } = useChat()
     const [selectedTopic, setSelectedTopic] = useState('')
 
     const topics = ['Administrative', 'Medical', 'Tickets', 'Tax Services']
+
+    const handleTopicSelect = (topic: string) => {
+        setSelectedTopic(topic)
+        handleSubmit({ preventDefault: () => {}, currentTarget: { reset: () => {} } } as any, `I need help with ${topic} services.`)
+      }
 
     return (
         <Card>
@@ -34,11 +39,20 @@ export default function Chat() {
                 <div className="space-y-4">
                 {messages.map(m => (
                     <div key={m.id} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                        {m.role === 'user' ? 'User: ' : 'AI: '}
                     <div className={`rounded-lg p-3 ${m.role === 'user' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}>
                         {m.content}
                     </div>
                     </div>
                 ))}
+                {isLoading && (
+                    <div>
+                    <p>Loading...</p>
+                    <button type="button" onClick={() => stop()}>
+                        Stop
+                    </button>
+                    </div>
+                )}
                 </div>
             </CardContent>
             <CardFooter>

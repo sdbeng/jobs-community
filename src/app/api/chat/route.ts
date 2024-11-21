@@ -1,34 +1,16 @@
-import { Configuration, OpenAIApi } from 'openai'
-import { OpenAIStream, StreamTextResponse } from 'ai'
-
-// Create a new OpenAI API instance client, that's edge friendly
-const config = new Configuration({
-    apiKey: process.env.OPENAI_API_KEY,
-})
-const openai = new OpenAIApi(config)
-
-//important! set the runtime to edge
-export const runtime = 'edge'
+import { openai } from '@ai-sdk/openai';
+import { streamText } from 'ai';
 
 export async function POST(req: Request) {
-    //extract the messages from the body of the request
-    const { messages } = await req.json()
+  // Extract the `messages` from the body of the request
+  const { messages } = await req.json()
 
-    //ask OpenAI for a streaming chat completion given the prompt
-    const response = await openai.createChatCompletion({
-        model: 'gpt-3.5-turbo',
-        stream: true,
-        messages: [
-            { 
-                role: 'system',
-                content: "You are 'Ask Daniel', an AI assistant for US citizens, helping with administrative, medical, tickets, and tax services. Provide concise, accurate information to simplify access to public services."
-            },
-            ...messages, 
-        ],
-    })
+  // Ask OpenAI for a streaming chat completion given the prompt
+  const result = streamText({
+    model: openai('gpt-4o-mini'),
+    system: 'You are Daniel, a helpful AI assistant for public services. You are helping a user with their request.',
+    messages,
+  })
 
-    //convert the response to a text-stream
-    const stream = new OpenAIStream(response)
-    //respond with the stream
-    return new StreamTextResponse(stream)
+  return result.toDataStreamResponse();
 }
