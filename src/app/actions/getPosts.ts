@@ -5,16 +5,21 @@ import { db } from '@/lib/db';
 import { PostData, User } from '@/app/types/postType';
 import { auth, currentUser } from '@clerk/nextjs/server';
 
+interface PostResult {
+  data?: PostData;
+  error?: string;
+}
+
 const getPosts = async (): Promise<PostData[] | undefined> => {
-  const { userId } = auth();
+  const { userId } = await auth();
   console.log('====================================');
   console.log('userId', userId);
   console.log('currentUser', currentUser);
   console.log('====================================');
 
-  // if (!userId) {
-  //   return {error: 'User not found'};
-  // }
+  if (!userId) {
+    return [];
+  }
 
   try {
     const posts = await db.post.findMany({

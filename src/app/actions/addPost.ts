@@ -24,10 +24,10 @@ export default async function addPost(formData: FormData): Promise<{ data?: Post
         return { error: 'Please fill in text field.' };
     }
 
-    const { userId } = auth();
+    const { userId } = await auth();
 
     if (!userId) {
-        return { error: 'User was not found.' };
+        return { error: 'Hello, guest! User was not found.' };
     }
 
     try {

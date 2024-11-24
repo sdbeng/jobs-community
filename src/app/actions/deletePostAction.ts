@@ -9,7 +9,7 @@ const deletePostAction = async (postId: number): Promise<{
     dataMessage?: string | null;
     error?: string;
 }> => {
-    const {userId} = auth();
+    const {userId} = await auth();
 
     console.log('user from currentUser===',userId);
 
