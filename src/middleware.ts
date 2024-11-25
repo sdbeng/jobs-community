@@ -1,9 +1,19 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+import { NextResponse } from "next/server";
 
-export default clerkMiddleware();
+const isProtectedRoute = createRouteMatcher(['/dashboard(.*)', '/forum(.*)']);
+export default clerkMiddleware(async (auth, req) => {
+  console.log("Middleware executed for:", req.nextUrl.pathname);
+  if (isProtectedRoute(req)) await auth.protect()
+
+  return NextResponse.next();
+});
+
 
 export const config = {
   matcher: [
+    //add / route to the matcher
+    "/network",
     "/((?!.*\\..*|_next).*)", // Don't run middleware on static files
     "/", // Run middleware on index page
     "/(api|trpc)(.*)",
