@@ -35,3 +35,18 @@ model User {
 }
 
 ```
+
+## v14> v15 migrate - Notes from so & docs
+
+From the example in the migration guide they show that you can't use the destructured members of an asynchronous page props.
+
+```ts
+type tParams = Promise<{ slug: string[] }>;
+
+export default async function Challenge(props: { params: tParams }) {
+  const { slug } = await props.params;
+  const productID = slug[1];
+
+  // other code here
+}
+```
