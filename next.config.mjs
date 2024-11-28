@@ -13,6 +13,10 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  // compilerOptions: {
+  //   target: "ES2020", // or higher
+  //   module: "nodenext",
+  // },
 };
 
 export default nextConfig;
