@@ -22,20 +22,20 @@ const Header = async () => {
         <div className='flex items-center space-x-6'>
             {/* icons w/ Links */}
             <Link href='/' className='flex flex-col items-center'>
-                <HomeIcon className='h-6 text-gray-600 cursor-pointer' />
-                <p className='text-sm'>Home</p>
+                <HomeIcon className='h-6 text-white cursor-pointer' />
+                <p className='text-sm text-white'>Home</p>
             </Link>
-            <Link href='/network' className='flex flex-col items-center hidden md:flex'>
-                <UsersIcon className='h-6 text-gray-600 cursor-pointer' />
-                <p className='text-sm'>Network</p>
+            <Link href='/network' className='flex flex-col items-center md:flex'>
+                <UsersIcon className='h-6 text-white cursor-pointer' />
+                <p className='text-sm text-white'>Network</p>
             </Link>
-            <Link href='/jobs' className='flex flex-col items-center hidden md:flex'>
-                <Briefcase className='h-6 text-gray-600 cursor-pointer' />
-                <p className='text-sm'>Jobs</p>
+            <Link href='/jobs' className='flex flex-col items-center md:flex'>
+                <Briefcase className='h-6 text-white cursor-pointer' />
+                <p className='text-sm text-white'>Jobs</p>
             </Link>
             <Link href='/chat' className='flex flex-col items-center'>
-                <MessagesSquare className='h-6 text-gray-600 cursor-pointer' />
-                <p className='text-sm'>Public Services</p>
+                <MessagesSquare className='h-6 text-white cursor-pointer' />
+                <p className='text-sm text-white'>Public Services</p>
             </Link>
             <SignedIn>
                 <UserButton />
