@@ -36,7 +36,23 @@ model User {
 
 ```
 
+## Prisma - migrate, update models(see steps saved in Notes mac app)
+
+e.g. run:
+
+```bash
+npx prisma migrate dev --name add-projects
+```
+
 ## v14> v15 migrate - Notes from so & docs
+
+Upgraded to v15 - wip
+todo:
+
+- check up on the auth model
+- check up on the db schema
+- check up on the middleware
+- update projects page, search bar, results
 
 From the example in the migration guide they show that you can't use the destructured members of an asynchronous page props.
 
