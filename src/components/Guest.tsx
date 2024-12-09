@@ -1,19 +1,22 @@
-//write a Guest component that renders a welcome user message if user is not signed in
-//and a sign in button if user is not signed in
-
 import { Button } from "./ui/button";
-import { SignedIn, SignedOut } from "@clerk/clerk-react";
+import { SignedIn, SignedOut } from "@clerk/nextjs";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 export default function Guest() {
     return (
-        <div className="flex flex-col justify-center items-center bg-white mr-6 rounded-lg border py-4">
-            <Avatar className="h-16 w-16 mb-5">
-                <AvatarImage src="https://github.com/shadcn.png" />
-                <AvatarFallback>
-                    <p className="bg-gray-100 " >Welcome Guest. If you like to get a membership of Jobs Community, please sign up.</p>
-                </AvatarFallback>
+        <div className="flex flex-col justify-center items-center bg-white p-8 rounded-lg border shadow-sm max-w-md mx-auto">
+            <Avatar className="h-16 w-16 mb-4">
+                <AvatarImage src="/default-user-avatar.svg" alt="Guest" />
+                <AvatarFallback>G</AvatarFallback>
             </Avatar>
+            
+            <SignedOut>
+                <h2 className="text-xl font-semibold mb-3">Welcome to Jobs Community!</h2>
+                <p className="text-gray-600 text-center mb-4">
+                    Join our community to access exclusive job opportunities and connect with employers.
+                </p>
+                <Button className="w-full bg-purple-300 text-slate-700 px-4 py-2 rounded-md">Sign In</Button>
+            </SignedOut>
         </div>
     )
 }

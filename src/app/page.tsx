@@ -1,38 +1,43 @@
+import Guest from "@/components/Guest";
 import PostFeed from "@/components/PostFeed";
 import PostForm from "@/components/PostForm";
 import UserInformation from "@/components/UserInformation";
-import { SignedIn } from "@clerk/nextjs";
-import getPosts from "./actions/getPosts";
-import Guest from "@/components/Guest";
+import { SignedIn, SignedOut } from "@clerk/nextjs";
+import getPosts from "@/app/actions/getPosts";
 
 export default async function Home() {
-  const posts = await getPosts();
+    try {
+        const posts = await getPosts();
 
-  if(!posts) {
-    console.log('no posts fetched');
-    return <Guest />
-  }
+        return (
+            <div className="container mx-auto py-8">
+                <SignedOut>
+                    <Guest />
+                </SignedOut>
 
-  return (
-    <div className="grid grid-cols-8 mt-5 sm:px-5">      
-      {posts ? (<section className="md:inline md:col-span-2 hidden">        
-        {/* UserInformation -avatar left panel*/}
-        <UserInformation posts={posts} />
-      </section>) : <Guest />}
+                <SignedIn>
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                        {/* User Information Sidebar */}
+                        <div className="md:col-span-1">
+                            <UserInformation posts={posts ?? []} />
+                        </div>
 
-      <section className="col-span-full md:col-span-6 xl:col-span-4 xl:max-w-xl mx-auto w-full ">
-        <SignedIn>
-        {/* PostForm center */}        
-        <PostForm />
-        <PostFeed posts={posts}/>
-        </SignedIn>
-        {/* PostFeed right side */}
-      </section>
-
-      <section className="hidden xl:inline justify-center col-span-2 ">
-        {/* Widget- right side  */}
-      </section>
-      
-    </div>
-  );
+                        {/* Main Content Area */}
+                        <div className="md:col-span-3 space-y-6">
+                            <PostForm />
+                            <PostFeed posts={posts ?? []} />
+                        </div>
+                    </div>
+                </SignedIn>
+            </div>
+        );
+    } catch (error) {
+        console.error('Error rendering Home page:', error);
+        return (
+            <div className="container mx-auto py-8">
+                <h1 className="text-2xl font-bold mb-6">Error loading page</h1>
+                <p className="text-gray-600">There was an error loading the page. Please try again later.</p>
+            </div>
+        );
+    }
 }

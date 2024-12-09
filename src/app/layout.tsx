@@ -1,11 +1,11 @@
+import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header";
-import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 import Footer from "@/components/footer";
-import { ClerkProvider } from "@clerk/nextjs";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,22 +20,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
-      
+    <ClerkProvider>      
     <html lang="en">
-      <body className={inter.className}>
-        {/* toaster */}
-        {/* header */}
+      <body className={`${inter.className} flex flex-col min-h-screen`}>        
         <header className="border-b ">
           <Header />
         </header>
-        <div className="bg-[#f4f2eb] ">
-          <main>
+        <div className="bg-[#f4f2eb] flex-grow">
+          <main className="container mx-auto px-4  py-8">
             {children}
           </main>
           <ToastContainer />
         </div>
-        <footer>
+        <footer className="mt-auto">
           <Footer />
         </footer>        
         </body>
