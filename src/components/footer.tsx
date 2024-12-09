@@ -9,8 +9,8 @@ const Footer = () => {
                         <p>&copy; 2024 Jobs Community</p>
                     </div>
                     <div>
-                        <a href="https://twitter.com" target="_blank" rel="noreferrer">
-                            <span className="sr-only">Twitter</span>
+                        <a href="https://x.com/sergb_appdev" target="_blank" rel="noreferrer">
+                            <span className="sr-only">X</span>
                             <svg
                                 className="h-6 w-6 fill-current text-blue-500 hover:text-blue-700"
                                 xmlns="http://www.w3.org/2000/svg"

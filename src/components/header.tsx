@@ -25,7 +25,7 @@ const Header = async () => {
                 <HomeIcon className='h-6 text-white cursor-pointer' />
                 <p className='text-sm text-white'>Home</p>
             </Link>
-            <Link href='/dev' className='flex flex-col items-center md:flex'>
+            <Link href='/developers' className='flex flex-col items-center md:flex'>
                 <UsersIcon className='h-6 text-white cursor-pointer' />
                 <p className='text-sm text-white'>Developers</p>
             </Link>
