@@ -12,10 +12,6 @@ interface PostResult {
 
 const getPosts = async (): Promise<PostData[] | undefined> => {
   const { userId } = await auth();
-  console.log('====================================');
-  console.log('userId', userId);
-  // console.log('currentUser', currentUser);
-  console.log('====================================');
 
   if (!userId) {
     return [];
