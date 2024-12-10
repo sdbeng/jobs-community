@@ -39,8 +39,7 @@ export default function PostForm() {
             console.log('error:', error, data);            
             toast.error(error);
             // return;
-        }else {
-            console.log('2.data:', data);            
+        }else {                       
             toast.success('Post added successfully');
             ref.current?.reset();//reset the form
         }

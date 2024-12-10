@@ -3,18 +3,28 @@ import { NextResponse } from "next/server";
 
 const isProtectedRoute = createRouteMatcher([
   '/dashboard(.*)',
-  '/chat(.*)',
   '/developers(.*)',
+  '/chat(.*)',
   '/projects(.*)'
 ]);
+
+const isUserChatAiRoute = createRouteMatcher(['/chat(.*)']);//not utilz for now
+
 export default clerkMiddleware(async (auth, req) => {
   // console.log("Middleware executed for:", req.nextUrl.pathname);
   if (isProtectedRoute(req)) await auth.protect()
 
+  // if(isUserChatAiRoute(req)) {
+  //   await auth.protect((has) => {
+  //     return (
+  //       has({role: 'admin'})
+  //     )
+  //   })
+  // }
+
   return NextResponse.next();
 });
 
-console.log('middleware called...')
 export const config = {
   // matcher: [
   //   //add / route to the matcher

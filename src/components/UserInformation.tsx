@@ -9,7 +9,6 @@ async function UserInformation({posts}: {posts: PostData[]}) {
     const firstName = user?.firstName as string;
     const lastName = user?.lastName as string;
     const imageUrl = user?.imageUrl as string;
-    // console.log('user obj===',user);
 
     const userPosts = posts?.filter((post) => post.authorId === user?.id);
 
