@@ -7,6 +7,15 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from "@/components/ui/input"
 import { Loader2 } from 'lucide-react'
 import { Protect } from '@clerk/nextjs'
+import { checkRole } from '@/utils/roles'
+import { redirect } from 'next/navigation'
+
+// async function checkisAdminRole() {
+//   //protect the page from users who are not admins
+//   const isAdmin = await checkRole('admin')
+//   if(!isAdmin) {
+//     redirect('/')
+// }
 
 export default function Chat() {
     const { messages, input, handleInputChange, handleSubmit, isLoading, stop } = useChat()
@@ -29,10 +38,7 @@ export default function Chat() {
 
     // console.log('selectedTopic===', selectedTopic)
     return (
-      <Protect
-        role='admin'
-        fallback={<p>Only authorized users can access this content.</p>}
-      >
+      
         <Card className="w-full max-w-2xl mx-auto mt-8 bg-gradient-to-br from-purple-100 to-blue-100 dark:from-purple-900 dark:to-blue-900">
       <CardHeader className="bg-white bg-opacity-80 dark:bg-gray-800 dark:bg-opacity-80 rounded-t-lg">
         <CardTitle className="text-2xl font-bold text-center text-purple-700 dark:text-purple-300">Ask Daniel</CardTitle>
@@ -94,6 +100,6 @@ export default function Chat() {
         </form>
       </CardFooter>
     </Card>
-    </Protect>
+    
     )
 }

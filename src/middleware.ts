@@ -8,21 +8,19 @@ const isProtectedRoute = createRouteMatcher([
   '/projects(.*)'
 ]);
 
-const isUserChatAiRoute = createRouteMatcher(['/chat(.*)']);//not utilz for now
+const isAdminRoute = createRouteMatcher(['/admin(.*)', '/chat(.*)']);
+
+const isUserChatAiRoute = createRouteMatcher(['/chat(.*)']);
 
 export default clerkMiddleware(async (auth, req) => {
   // console.log("Middleware executed for:", req.nextUrl.pathname);
-  if (isProtectedRoute(req)) await auth.protect()
+  //protect all routes starting with /admin
+  if(isAdminRoute(req) && (await auth()).sessionClaims?.metadata?.role !== 'admin') {
+    const url = new URL('/', req.url);
+    return NextResponse.redirect(url)
+  }
 
-  // if(isUserChatAiRoute(req)) {
-  //   await auth.protect((has) => {
-  //     return (
-  //       has({role: 'admin'})
-  //     )
-  //   })
-  // }
-
-  return NextResponse.next();
+  // return NextResponse.next();
 });
 
 export const config = {
