@@ -3,6 +3,7 @@ import getProducts from "../actions/get-products";
 
 export default async function Shop() {
     const products = await getProducts();
+    console.log('products===', products);
 
     return (
         <div>
