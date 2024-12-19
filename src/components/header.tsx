@@ -1,5 +1,5 @@
 import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/nextjs'
-import { Briefcase, HomeIcon, MessagesSquare, SearchIcon, UsersIcon } from 'lucide-react'
+import { Briefcase, HomeIcon, MessagesSquare, SearchIcon, UsersIcon, Store } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -36,6 +36,10 @@ const Header = async () => {
             <Link href='/chat' className='flex flex-col items-center'>
                 <MessagesSquare className='h-6 text-white cursor-pointer' />
                 <p className='text-sm text-white'>Public Services</p>
+            </Link>
+            <Link href='/shop' className='flex flex-col items-center'>
+                <Store className='h-6 text-white cursor-pointer' />
+                <p className='text-sm text-white'>Swag Shop</p>
             </Link>
             <SignedIn>
                 <UserButton />
