@@ -1,5 +1,6 @@
 import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
+import { VercelToolbar } from '@vercel/toolbar/next'
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header";
@@ -29,6 +30,8 @@ export default function RootLayout({
         <div className="bg-[#f4f2eb] flex-grow">
           <main className="container mx-auto px-4  py-8">
             {children}
+            
+            <VercelToolbar />
           </main>
           <ToastContainer />
         </div>
