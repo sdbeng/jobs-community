@@ -21,6 +21,7 @@
     "@radix-ui/react-avatar": "^1.1.0",
     "@radix-ui/react-slot": "^1.1.0",
     "@vercel/flags": "^2.6.3",
+    "@vercel/toolbar": "^0.1.30",
     "ai": "^4.0.4",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
