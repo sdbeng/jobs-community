@@ -1,5 +1,4 @@
 import { showWinterSale } from '@/flags';
-import { log } from 'console';
 import React from 'react';
 
 interface Product {
@@ -14,8 +13,7 @@ interface ProductGridProps {
 }
 
 const ProductGrid: React.FC<ProductGridProps> = async ({ products }) => {
-    const onsale = await showWinterSale();
-    log('onsale===', onsale);
+    const onsale = await showWinterSale();    
 
     return (
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
