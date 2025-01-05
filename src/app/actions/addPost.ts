@@ -12,42 +12,38 @@ interface PostData {
     };
 }
 
-interface PostResult {
-    data?: PostData;
-    error?: string;
-}
-
 export default async function addPost(formData: FormData): Promise<{ data?: PostData; error?: string}> {
-    const textValue = formData.get('text') as string;    
+    const text = formData.get('text') as string;    
 
-    if (!textValue || textValue === '') {
-        return { error: 'Please fill in text field.' };
+    if (!text || text.trim() === '') {
+        return { error: 'Please write something to post.' };
     }
 
     const { userId } = await auth();
 
     if (!userId) {
-        return { error: 'Hello, guest! User was not found.' };
+        return { error: 'Please sign in to post.' };
     }
 
     try {
         const postData: PostData = await db.post.create({
             data: {
-                text: textValue,                
+                text: text.trim(),
                 authorId: userId,
             },
             include: {
                 author: {
                     select: {
                         imageUrl: true,
+                    },
                 },
             },
-        },
         });
+
         revalidatePath('/');
         return { data: postData };
     } catch (error) {
         console.error('Error adding post:', error);
-        return { error: 'An error occurred while adding post!!' };
+        return { error: 'Failed to add post. Please try again.' };
     }
 }

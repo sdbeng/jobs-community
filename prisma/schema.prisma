@@ -32,16 +32,12 @@ model User {
 }
 
 model Post {
-  id        Int      @id @default(autoincrement())
+  id        String   @id @default(cuid())
   text      String
-  // content   String
-  //related to user
   authorId  String
   author    User     @relation(fields: [authorId], references: [clerkUserId], onDelete: Cascade)
-  // likes     Like[]
   createdAt DateTime @default(now())
-
-  // @@map("posts")
+  updatedAt DateTime @updatedAt
 
   @@index([authorId])
 }
