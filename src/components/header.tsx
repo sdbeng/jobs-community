@@ -42,7 +42,7 @@ const Header = async () => {
                 <UserButton />
             </SignedIn>
             <SignedOut>
-                <Button asChild className='bg-purple-300 text-slate-700 px-4 py-2 rounded-md'>
+                <Button asChild className='bg-purple-300 hover:bg-gray-200 text-slate-700 px-4 py-2 rounded-md'>
 
                     {/* div-wrap SignInButton avoids runtime error */}
                     <div>

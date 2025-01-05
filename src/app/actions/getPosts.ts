@@ -34,3 +34,30 @@ export async function getPosts() {
         return { error: 'Failed to fetch posts' };
     }
 }
+
+export async function getPublicPosts(limit: number = 5) {
+    try {
+        const posts = await db.post.findMany({
+            where: {
+                isPrivate: false, // Only fetch public posts
+            },
+            take: limit,
+            orderBy: {
+                createdAt: 'desc'
+            },
+            include: {
+                author: {
+                    select: {
+                        imageUrl: true,
+                        name: true,
+                    }
+                }
+            }
+        });
+
+        return { data: posts };
+    } catch (error) {
+        console.error('Error fetching public posts:', error);
+        return { error: 'Failed to fetch public posts' };
+    }
+}
