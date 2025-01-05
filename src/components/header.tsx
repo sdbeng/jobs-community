@@ -14,10 +14,7 @@ const Header = async () => {
         {/* Image logo */}
         <div className='flex items-center space-x-4'>
             <Image src='/space_x.png' alt='jobs community logo' width={72} height={72} className='rounded-full' />
-            <form className='flex items-center space-x-2 bg-gray-100 p-2 rounded-md'>
-                <SearchIcon className='h-5 text-gray-600' />
-                <input type='text' placeholder='Search for projects' className='bg-transparent outline-none flex-1' />
-            </form>
+            {/*  */}
         </div>
         <div className='flex items-center space-x-6'>
             {/* icons w/ Links */}
