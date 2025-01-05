@@ -1,6 +1,7 @@
+import { cache } from 'react';
 import { db } from '@/lib/db';
 
-export default async function getProducts() {
+const getProducts = cache(async () => {
     try {
         const products = await db.product?.findMany({
             orderBy: {
@@ -12,4 +13,6 @@ export default async function getProducts() {
         console.error('Error fetching products:', error);
         return [];
     }
-}
+});
+
+export default getProducts;
