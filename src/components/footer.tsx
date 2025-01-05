@@ -6,7 +6,7 @@ const Footer = () => {
             <div className="container mx-auto py-4">
                 <div className="flex justify-between items-center">
                     <div>
-                        <p>&copy; 2024 Jobs Community</p>
+                        <p>&copy; 2025 Jobs Community</p>
                     </div>
                     <div>
                         <a href="https://x.com/sergb_appdev" target="_blank" rel="noreferrer">
