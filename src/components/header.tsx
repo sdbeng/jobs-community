@@ -30,10 +30,12 @@ const Header = async () => {
                 <Briefcase className='h-6 text-white cursor-pointer' />
                 <p className='text-sm text-white'>Projects</p>
             </Link>
-            <Link href='/chat' className='flex flex-col items-center'>
-                <MessagesSquare className='h-6 text-white cursor-pointer' />
-                <p className='text-sm text-white'>Public Services</p>
-            </Link>
+            <SignedIn>
+                <Link href='/chat' className='flex flex-col items-center'>
+                    <MessagesSquare className='h-6 text-white cursor-pointer' />
+                    <p className='text-sm text-white'>Public Services</p>
+                </Link>
+            </SignedIn>
             <Link href='/shop' className='flex flex-col items-center'>
                 <Store className='h-6 text-white cursor-pointer' />
                 <p className='text-sm text-white'>Swag Shop</p>
@@ -42,7 +44,7 @@ const Header = async () => {
                 <UserButton />
             </SignedIn>
             <SignedOut>
-                <Button asChild className='bg-purple-300 text-slate-700 px-4 py-2 rounded-md'>
+                <Button asChild className='bg-purple-300 hover:bg-gray-200 text-slate-700 px-4 py-2 rounded-md'>
 
                     {/* div-wrap SignInButton avoids runtime error */}
                     <div>

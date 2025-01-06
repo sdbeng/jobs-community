@@ -1,43 +1,82 @@
-import Guest from "@/components/Guest";
-import PostFeed from "@/components/PostFeed";
-import PostForm from "@/components/PostForm";
-import UserInformation from "@/components/UserInformation";
-import { SignedIn, SignedOut } from "@clerk/nextjs";
-import getPosts from "@/app/actions/getPosts";
+/* eslint-disable react/no-unescaped-entities */
+import { getPosts, getPublicPosts } from './actions/getPosts';
+import PostForm from '@/components/PostForm';
+import PostList from '@/components/PostList';
+import { Button } from '@/components/ui/button';
+import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
+import Link from 'next/link';
 
 export default async function Home() {
-    try {
-        const posts = await getPosts();
+    const { data: privatePosts, error: privateError } = await getPosts();
+    const { data: publicPosts } = await getPublicPosts(5); // Get 5 public posts
 
-        return (
-            <div className="container mx-auto py-8">
-                <SignedOut>
-                    <Guest />
-                </SignedOut>
+    return (
+        <main className="max-w-3xl mx-auto p-4">
+            <SignedOut>
+                <section className="text-center py-12 space-y-6">
+                    <h1 className="text-4xl font-bold text-gray-900">
+                        Welcome to My Developer Portfolio
+                    </h1>
+                    <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+                        Hi! I'm Serg, a Full Stack Developer specializing in AI-powered applications. 
+                        This is a demo of my social posting platform built with Next.js 15, TypeScript, 
+                        and integrated with advanced AI features.
+                    </p>
+                    {<div className="flex gap-4 justify-center">
+                        <Button asChild className='bg-purple-300 hover:bg-gray-200 text-slate-700 px-4 py-2 rounded-md'>
 
-                <SignedIn>
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-                        {/* User Information Sidebar */}
-                        <div className="md:col-span-1">
-                            <UserInformation posts={posts ?? []} />
-                        </div>
-
-                        {/* Main Content Area */}
-                        <div className="md:col-span-3 space-y-6">
-                            <PostForm />
-                            <PostFeed posts={posts ?? []} />
+                            {/* div-wrap SignInButton avoids runtime error */}
+                            <div>
+                                <SignInButton />
+                            </div>
+                        </Button>
+                        <a 
+                            href="https://cal.com/sergdb24"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-6 py-3 bg-gray-100 text-gray-900 rounded-lg hover:bg-gray-200 transition-colors"
+                        >
+                            Schedule call
+                        </a>
+                    </div>}
+                    
+                    <div className="mt-12">
+                        <h2 className="text-2xl font-semibold text-gray-800 mb-6">
+                            Technical Highlights
+                        </h2>
+                        <div className="grid md:grid-cols-3 gap-4 text-left max-w-2xl mx-auto">
+                            <div className="p-4 bg-white rounded-lg shadow-sm">
+                                <h3 className="font-medium">Modern Stack</h3>
+                                <p className="text-sm text-gray-600">Next.js 15, TypeScript, Prisma, PostgreSQL</p>
+                            </div>
+                            <div className="p-4 bg-white rounded-lg shadow-sm">
+                                <h3 className="font-medium">Authentication</h3>
+                                <p className="text-sm text-gray-600">Secure auth with Clerk</p>
+                            </div>
+                            <div className="p-4 bg-white rounded-lg shadow-sm">
+                                <h3 className="font-medium">AI Integration</h3>
+                                <p className="text-sm text-gray-600">Content analysis & recommendations</p>
+                            </div>
                         </div>
                     </div>
-                </SignedIn>
-            </div>
-        );
-    } catch (error) {
-        console.error('Error rendering Home page:', error);
-        return (
-            <div className="container mx-auto py-8">
-                <h1 className="text-2xl font-bold mb-6">Error loading page</h1>
-                <p className="text-gray-600">There was an error loading the page. Please try again later.</p>
-            </div>
-        );
-    }
+
+                    <div className="mt-12">
+                        <h2 className="text-2xl font-semibold text-gray-800 mb-6">
+                            Public Posts
+                        </h2>
+                        <PostList posts={publicPosts || []} />
+                    </div>
+                </section>
+            </SignedOut>
+
+            <SignedIn>
+                <PostForm />
+                {privateError ? (
+                    <p className="text-red-500 text-center">{privateError}</p>
+                ) : (
+                    <PostList posts={privatePosts || []} />
+                )}
+            </SignedIn>
+        </main>
+    );
 }
