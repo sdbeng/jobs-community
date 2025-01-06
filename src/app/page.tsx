@@ -36,7 +36,7 @@ export default async function Home() {
                             rel="noopener noreferrer"
                             className="px-6 py-3 bg-gray-100 text-gray-900 rounded-lg hover:bg-gray-200 transition-colors"
                         >
-                            Schedule a call
+                            Schedule call
                         </a>
                     </div>}
                     

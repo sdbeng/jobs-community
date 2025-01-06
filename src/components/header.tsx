@@ -30,10 +30,12 @@ const Header = async () => {
                 <Briefcase className='h-6 text-white cursor-pointer' />
                 <p className='text-sm text-white'>Projects</p>
             </Link>
-            <Link href='/chat' className='flex flex-col items-center'>
-                <MessagesSquare className='h-6 text-white cursor-pointer' />
-                <p className='text-sm text-white'>Public Services</p>
-            </Link>
+            <SignedIn>
+                <Link href='/chat' className='flex flex-col items-center'>
+                    <MessagesSquare className='h-6 text-white cursor-pointer' />
+                    <p className='text-sm text-white'>Public Services</p>
+                </Link>
+            </SignedIn>
             <Link href='/shop' className='flex flex-col items-center'>
                 <Store className='h-6 text-white cursor-pointer' />
                 <p className='text-sm text-white'>Swag Shop</p>
