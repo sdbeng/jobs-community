@@ -46,16 +46,20 @@ export default async function Home() {
                         </h2>
                         <div className="grid md:grid-cols-3 gap-4 text-left max-w-2xl mx-auto">
                             <div className="p-4 bg-white rounded-lg shadow-sm">
-                                <h3 className="font-medium">Modern Stack</h3>
+                                <h3 className="font-medium">Modern 2025 Stack</h3>
                                 <p className="text-sm text-gray-600">Next.js 15, TypeScript, Prisma, PostgreSQL</p>
                             </div>
                             <div className="p-4 bg-white rounded-lg shadow-sm">
                                 <h3 className="font-medium">Authentication</h3>
-                                <p className="text-sm text-gray-600">Secure auth with Clerk</p>
+                                <p className="text-sm text-gray-600">Secure auth with Clerk. Auth setup, Middleware private routes configuration.</p>
                             </div>
                             <div className="p-4 bg-white rounded-lg shadow-sm">
                                 <h3 className="font-medium">AI Integration</h3>
-                                <p className="text-sm text-gray-600">Content analysis & recommendations</p>
+                                <p className="text-sm text-gray-600">Ai AGents - Content analysis & recommendations</p>
+                            </div>
+                            <div className="p-4 bg-white rounded-lg shadow-sm">
+                                <h3 className="font-medium">Kubernetes Office Cluster</h3>
+                                <p className="text-sm text-gray-600">Managing a containarized environment of web applications</p>
                             </div>
                         </div>
                     </div>
