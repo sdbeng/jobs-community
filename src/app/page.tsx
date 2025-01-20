@@ -58,8 +58,8 @@ export default async function Home() {
                                 <p className="text-sm text-gray-600">Ai AGents - Content analysis & recommendations</p>
                             </div>
                             <div className="p-4 bg-white rounded-lg shadow-sm">
-                                <h3 className="font-medium">Kubernetes Office Cluster</h3>
-                                <p className="text-sm text-gray-600">Managing a containarized environment of web applications</p>
+                                <h3 className="font-medium">Real Time Trading</h3>
+                                <p className="text-sm text-gray-600">Real-time market movement alerts</p>
                             </div>
                         </div>
                     </div>
