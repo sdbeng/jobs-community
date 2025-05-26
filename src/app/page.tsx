@@ -55,11 +55,11 @@ export default async function Home() {
                             </div>
                             <div className="p-4 bg-white rounded-lg shadow-sm">
                                 <h3 className="font-medium">AI Integration</h3>
-                                <p className="text-sm text-gray-600">Ai AGents - Content analysis & recommendations</p>
+                                <p className="text-sm text-gray-600">Ai Agents - Content analysis & recommendations</p>
                             </div>
                             <div className="p-4 bg-white rounded-lg shadow-sm">
                                 <h3 className="font-medium">Real Time Trading</h3>
-                                <p className="text-sm text-gray-600">Real-time market movement alerts</p>
+                                <p className="text-sm text-gray-600">Real-time Signals market movement alerts MVP</p>
                             </div>
                         </div>
                     </div>
