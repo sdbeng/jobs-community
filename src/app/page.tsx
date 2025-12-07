@@ -18,8 +18,8 @@ export default async function Home() {
                         Welcome to My Developer Portfolio
                     </h1>
                     <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                        Hi! I'm Serg, a Full Stack Developer specializing in AI-powered applications. 
-                        This is a demo of my social posting platform built with Next.js 15, TypeScript, 
+                        Hi! I'm Serg, a Full Stack Developer specializing in mobile, web AI-powered applications. 
+                        This is a demo of my social posting platform built with Next.js 16, TypeScript, 
                         and integrated with advanced AI features.
                     </p>
                     {<div className="flex gap-4 justify-center">
@@ -30,14 +30,7 @@ export default async function Home() {
                                 <SignInButton />
                             </div>
                         </Button>
-                        <a 
-                            href="https://cal.com/sergdb24"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="px-6 py-3 bg-gray-100 text-gray-900 rounded-lg hover:bg-gray-200 transition-colors"
-                        >
-                            Schedule call
-                        </a>
+                       
                     </div>}
                     
                     <div className="mt-12">
@@ -47,7 +40,7 @@ export default async function Home() {
                         <div className="grid md:grid-cols-3 gap-4 text-left max-w-2xl mx-auto">
                             <div className="p-4 bg-white rounded-lg shadow-sm">
                                 <h3 className="font-medium">Modern 2025 Stack</h3>
-                                <p className="text-sm text-gray-600">Next.js 15, TypeScript, Prisma, PostgreSQL</p>
+                                <p className="text-sm text-gray-600">React, Vite, TanStack, Next.js 16, TypeScript, Prisma, PostgreSQL</p>
                             </div>
                             <div className="p-4 bg-white rounded-lg shadow-sm">
                                 <h3 className="font-medium">Authentication</h3>
