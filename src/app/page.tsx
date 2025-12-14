@@ -15,7 +15,7 @@ export default async function Home() {
             <SignedOut>
                 <section className="text-center py-12 space-y-6">
                     <h1 className="text-4xl font-bold text-gray-900">
-                        Welcome to My Developer Portfolio
+                        Welcome to my Developer Portfolio
                     </h1>
                     <p className="text-xl text-gray-600 max-w-2xl mx-auto">
                         Hi! I'm Serg, a Full Stack Developer specializing in mobile, web AI-powered applications. 

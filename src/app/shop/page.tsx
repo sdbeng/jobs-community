@@ -7,7 +7,7 @@ export default async function Shop() {
 
     return (
         <div>
-      <h1 className="text-3xl font-bold mb-6">Our Swag</h1>
+      <h1 className="text-3xl font-bold mb-6">Our Swag - on sale</h1>
       {products && products.length > 0 ? (
         <ProductGrid products={products} />
       ) : (
